@@ -27,6 +27,5 @@ class TestBooksCollector:
                                'Шерлок Холм_3': 'Мультфильмы'}
         assert len(collect.get_books_with_specific_genre('Ужасы')) == 2
 
-1
 
 
