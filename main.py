@@ -57,3 +57,4 @@ class BooksCollector:
         return self.favorites
 
 
+1
