@@ -9,23 +9,48 @@ class TestBooksCollector:
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
         assert len(collector.get_books_genre()) == 2
 
-    def test_set_book_genre(self):
+    def test_set_book_genre_success(self):
         collector = BooksCollector()
         collector.add_new_book('Шерлок Холмс')
         collector.set_book_genre('Шерлок Холмс', 'Детективы')
         assert collector.books_genre.get('Шерлок Холмс') == 'Детективы'
 
-    def test_get_book_genre(self):
+    def test_get_book_genre_success(self):
         collector = BooksCollector()
-        collector.add_new_book('Шерлок Холмc')
-        collector.set_book_genre('Шерлок Холмc', 'Детективы')
-        assert collector.get_book_genre('Шерлок Холмс') == 'Детективы'
+        collector.books_genre = {'Шерлок Холмc': 'Детективы'}
+        assert collector.get_book_genre('Шерлок Холмc') == 'Детективы'
 
-    def test_get_books_with_specific_genre_passed(self):
-        collect = BooksCollector()
-        collect.books_genre = {'Шерлок Холм': 'Ужасы', 'Шерлок Хол_1': 'Детективы', 'Шерлок Холм_2': 'Ужасы',
-                               'Шерлок Холм_3': 'Мультфильмы'}
-        assert len(collect.get_books_with_specific_genre('Ужасы')) == 2
+    def test_get_books_with_specific_genre_success(self):
+        collector = BooksCollector()
+        collector.books_genre = {'Оно': 'Ужасы', 'Шерлок Холмс': 'Детективы', 'Крик': 'Ужасы',
+                                 'Шрек': 'Мультфильмы'}
+        assert len(collector.get_books_with_specific_genre('Ужасы')) == 2
 
+    def test_get_books_genre_success(self):
+        collector = BooksCollector()
+        collector.books_genre = {'Оно': 'Ужасы'}
+        assert collector.get_books_genre() == collector.books_genre
 
+    def test_get_books_for_children_success(self):
+        collector = BooksCollector()
+        collector.books_genre = {'Оно': 'Ужасы', 'Шерлок Холмc': 'Детективы', 'Шрек': 'Мультфильмы',
+                                 'Назад в будущее': 'Комедии'}
+        books_for_children = ['Шрек', 'Назад в будущее']
+        assert collector.get_books_for_children() == books_for_children
 
+    def test_add_book_in_favorites_success(self):
+        collector = BooksCollector()
+        collector.books_genre = {'Оно': 'Ужасы', 'Шерлок Холмc': 'Детективы', 'Шрек': 'Мультфильмы'}
+        collector.add_book_in_favorites('Оно')
+        assert collector.favorites == ['Оно']
+
+    def test_delete_book_from_favorites_success(self):
+        collector = BooksCollector()
+        collector.favorites = ['Оно']
+        collector.delete_book_from_favorites('Оно')
+        assert collector.favorites == []
+
+    def test_get_list_of_favorites_books_success(self):
+        collector = BooksCollector()
+        collector.favorites = ['Оно']
+        assert collector.get_list_of_favorites_books() == ['Оно']
