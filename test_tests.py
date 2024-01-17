@@ -1,3 +1,4 @@
+import pytest
 from main import BooksCollector
 
 
@@ -8,6 +9,12 @@ class TestBooksCollector:
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
         assert len(collector.get_books_genre()) == 2
+
+    @pytest.mark.parametrize('name', ['Герой нашего времени', 'Детство', 'Война и мир'])
+    def test_add_new_book_no_genre_success(self, name):
+        collector = BooksCollector()
+        collector.add_new_book(name)
+        assert next(iter(collector.books_genre.values())) == ''
 
     def test_set_book_genre_success(self):
         collector = BooksCollector()
@@ -54,3 +61,4 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.favorites = ['Оно']
         assert collector.get_list_of_favorites_books() == ['Оно']
+
