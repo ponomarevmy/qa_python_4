@@ -1,4 +1,4 @@
-# qa_python
+# qa_python_4
 
 `test_add_new_book_add_two_books` Тест проверят работу метода `add_new_book` который добавляет новую книгу
 
@@ -9,8 +9,6 @@
 `test_get_book_genre_success` Тест проверят работу метода `get_book_genre` который получает жанр книги по её имени
 
 `test_get_books_with_specific_genre_success` Тест проверят работу метода `get_books_with_specific_genre` котоый выводит список книг с определенным жанром
-
-`test_get_books_genre_success` Тест проверят работу метода `get_books_genre который получает словарь books_genre`
 
 `test_get_books_for_children_success` Тест проверят работу метода `get_books_for_children` котоый возвращает список книг для детей
 
