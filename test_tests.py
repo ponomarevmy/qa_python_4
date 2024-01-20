@@ -22,6 +22,12 @@ class TestBooksCollector:
         collector.add_new_book(name)
         assert collector.books_genre == {}
 
+    def test_add_new_book_add_double(self):
+        collector = BooksCollector()
+        collector.add_new_book('Шерлок Холмс')
+        collector.add_new_book('Шерлок Холмс')
+        assert len(collector.get_books_genre()) == 1
+
     def test_set_book_genre_success(self):
         collector = BooksCollector()
         collector.add_new_book('Шерлок Холмс')
@@ -38,11 +44,6 @@ class TestBooksCollector:
         collector.books_genre = {'Оно': 'Ужасы', 'Шерлок Холмс': 'Детективы', 'Крик': 'Ужасы',
                                  'Шрек': 'Мультфильмы'}
         assert len(collector.get_books_with_specific_genre('Ужасы')) == 2
-
-    def test_get_books_genre_success(self):
-        collector = BooksCollector()
-        collector.books_genre = {'Оно': 'Ужасы'}
-        assert collector.get_books_genre() == collector.books_genre
 
     def test_get_books_for_children_success(self):
         collector = BooksCollector()
@@ -63,7 +64,4 @@ class TestBooksCollector:
         collector.delete_book_from_favorites('Оно')
         assert collector.get_list_of_favorites_books() == []
 
-    def test_get_list_of_favorites_books_success(self):
-        collector = BooksCollector()
-        collector.favorites = ['Оно']
-        assert collector.get_list_of_favorites_books() == ['Оно']
+
