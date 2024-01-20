@@ -6,8 +6,6 @@
 
 `test_set_book_genre_success` Тест проверят работу метода `set_book_genre` который устанавливает жанр для книги.
 
-`test_get_book_genre_success` Тест проверят работу метода `get_book_genre` который получает жанр книги по её имени
-
 `test_get_books_with_specific_genre_success` Тест проверят работу метода `get_books_with_specific_genre` котоый выводит список книг с определенным жанром
 
 `test_get_books_for_children_success` Тест проверят работу метода `get_books_for_children` котоый возвращает список книг для детей
