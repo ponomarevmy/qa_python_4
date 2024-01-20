@@ -14,13 +14,19 @@ class TestBooksCollector:
     def test_add_new_book_no_genre_success(self, name):
         collector = BooksCollector()
         collector.add_new_book(name)
-        assert next(iter(collector.books_genre.values())) == ''
+        assert collector.get_book_genre(name) == ''
+
+    @pytest.mark.parametrize('name', ['', '11111111111111111111111111111111111111111'])
+    def test_add_new_book_negative(self, name):
+        collector = BooksCollector()
+        collector.add_new_book(name)
+        assert collector.books_genre == {}
 
     def test_set_book_genre_success(self):
         collector = BooksCollector()
         collector.add_new_book('Шерлок Холмс')
         collector.set_book_genre('Шерлок Холмс', 'Детективы')
-        assert collector.books_genre.get('Шерлок Холмс') == 'Детективы'
+        assert collector.get_book_genre('Шерлок Холмс') == 'Детективы'
 
     def test_get_book_genre_success(self):
         collector = BooksCollector()
@@ -49,16 +55,15 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.books_genre = {'Оно': 'Ужасы', 'Шерлок Холмc': 'Детективы', 'Шрек': 'Мультфильмы'}
         collector.add_book_in_favorites('Оно')
-        assert collector.favorites == ['Оно']
+        assert collector.get_list_of_favorites_books() == ['Оно']
 
     def test_delete_book_from_favorites_success(self):
         collector = BooksCollector()
         collector.favorites = ['Оно']
         collector.delete_book_from_favorites('Оно')
-        assert collector.favorites == []
+        assert collector.get_list_of_favorites_books() == []
 
     def test_get_list_of_favorites_books_success(self):
         collector = BooksCollector()
         collector.favorites = ['Оно']
         assert collector.get_list_of_favorites_books() == ['Оно']
-
