@@ -34,11 +34,6 @@ class TestBooksCollector:
         collector.set_book_genre('Шерлок Холмс', 'Детективы')
         assert collector.get_book_genre('Шерлок Холмс') == 'Детективы'
 
-    def test_get_book_genre_success(self):
-        collector = BooksCollector()
-        collector.books_genre = {'Шерлок Холмc': 'Детективы'}
-        assert collector.get_book_genre('Шерлок Холмc') == 'Детективы'
-
     def test_get_books_with_specific_genre_success(self):
         collector = BooksCollector()
         collector.books_genre = {'Оно': 'Ужасы', 'Шерлок Холмс': 'Детективы', 'Крик': 'Ужасы',
@@ -63,5 +58,3 @@ class TestBooksCollector:
         collector.favorites = ['Оно']
         collector.delete_book_from_favorites('Оно')
         assert collector.get_list_of_favorites_books() == []
-
-
