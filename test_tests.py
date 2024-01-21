@@ -20,7 +20,7 @@ class TestBooksCollector:
     def test_add_new_book_negative(self, name):
         collector = BooksCollector()
         collector.add_new_book(name)
-        assert collector.books_genre == {}
+        assert collector.get_books_genre() == {}
 
     def test_add_new_book_add_double(self):
         collector = BooksCollector()
